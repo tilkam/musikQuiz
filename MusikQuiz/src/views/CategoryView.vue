@@ -74,9 +74,10 @@ export default {
 
       this.selectedCategoryId = id
       this.selectedCategoryString = categoryString
-      this.$emit('set-id', this.selectedCategoryId) 
+      
       /* this.songs = this.getSongs(id) */
-      this.$router.push({ name:'quiz', params: { id: this.selectedCategoryId } }); 
+      this.$router.push({ name:'quiz', params: { id: this.selectedCategoryId } , query:{ genre: this.selectedCategoryString}}); 
+      
      
 
     },

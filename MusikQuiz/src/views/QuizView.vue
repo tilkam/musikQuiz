@@ -1,22 +1,14 @@
 <template>
   <div>
-
-    <h1>{{ categoryString }}</h1>
-
+    <h1>{{ category }}</h1>
     <div class="songs">
       <div v-if="this.songs != null">
         <div v-for="song in songs" :key="song">
-
           <p>{{ "Artist: " + song.artist + " " + "Title: " + song.title }}</p>
-
-          <!--  <p>{{ song.artist }}</p> -->
         </div>
       </div>
     </div>
-
-
     <div v-if="loading">Loading...</div>
-
   </div>
 </template>
 
@@ -24,11 +16,9 @@
 import { getQuizQuestions } from '../data/Quiz';
 
 export default {
+
   name: "QuizView",
   components: {
-    /*     QuizViewer */
-
-
 
   },
   props: {
@@ -44,58 +34,39 @@ export default {
       type: Array,
       required: false
     },
-    setup(props) {
-
-      console.log(props.categoryString)
-    }
+   
   },
   data() {
     return {
       songs: [],
       startDate: "2022-09-23",
       endDate: "2023-03-23",
-      loading: false,
-      id: null,
-      /* categoryString: event.target.value */
-
+      loading: true,
+      category: null,
     }
   },
   methods: {
 
     async getSongs(id) {
-
+      this.loading = true
       try {
         this.songs = await getQuizQuestions(id, this.startDate, this.endDate);
-        if (this.songs != null) {
-          console.log(this.songs)
-          this.songs.forEach(song => {
-            console.log(song.title)
-          });
-
-        }
+       
       }
       catch (err) {
         console.log("error");
-
       }
 
-      this.show = false
+      this.loading = false
     },
-    updateId(newId) {
-      this.id = newId
-      console.log(newId)
-    }
 
   },
 
   async mounted() {
-    console.log(this.$route.params.id)
-
+    this.category = this.$route.query.genre
     this.getSongs(this.$route.params.id)
     
-
   },
-
 
 }
 
@@ -106,5 +77,6 @@ export default {
   display: flex;
   background: white;
   text-transform: none;
+  font-family: Montserrat, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 </style>
