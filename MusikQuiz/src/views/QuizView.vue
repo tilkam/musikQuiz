@@ -4,10 +4,10 @@
     <div class="songs">
       <div v-if="this.songs != null">
         <div class="question-container">
-          <div v-for="question of questions" :key="question.title">
+          <div v-for="question of question" :key="question.title">
             {{ question.title }}</div>
         </div>
-        <div v-for="song in alternatives" :key="song">
+        <div v-for="song in alternatives" :key="song" @click="isClicked(song.artist)">
           <div class="options-container">
             <p>{{ song.artist }}</p>
           </div>
@@ -32,7 +32,7 @@ export default {
       loading: true,
       category: null,
       alternatives: [],
-      questions: []
+      question: []
     }
   },
   methods: {
@@ -52,8 +52,23 @@ export default {
     async displayQuestions(songs) {
       this.alternatives = await getFour(songs)
 
-      this.questions.push(this.alternatives[0])
-      console.log(this.questions)
+      this.question.unshift(this.alternatives[0])
+
+
+    },
+    isClicked(song) {
+      console.log(this.question[0].artist)
+      console.log(song)
+      if(song === this.question[0].artist){
+        console.log("YES")
+      }
+      if (this.question.length === 1) {
+        this.question.pop()
+
+      }
+      this.displayQuestions(this.songs)
+      
+
     }
 
   },
@@ -64,11 +79,14 @@ export default {
 
   },
 
+
 }
 
 </script>
 
 <style >
+
+
 .songs {
   display: flex;
 }

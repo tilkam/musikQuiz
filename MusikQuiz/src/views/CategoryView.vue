@@ -4,21 +4,21 @@
   <div>
     <div class="container-category">
       <div class="header-category">
+        <h2>Categories</h2>
 
-        <div v-if="show">
-          <h2>Categories</h2>
-        </div>
-        <div class="background">
-          <div class="content-category">
-            <div class="container-category-buttons">
-              <button v-for="category in category" :key="category.id" :value="category.category" :id="category.id"
-                @click="selectCategory(category.id, category.category, category.startDate, category.endDate)"
-                class="category-button">
-                {{ category.category }}
 
-              </button>
-            </div>
+      </div>
+      <div class="background">
+        <div class="content-category">
+          <div class="container-category-buttons">
+            <button v-for="category in category" :key="category.id" :value="category.category" :id="category.id"
+              @click="selectCategory(category.id, category.category, category.startDate, category.endDate)"
+              class="category-button">
+              {{ category.category }}
+
+            </button>
           </div>
+
         </div>
       </div>
     </div>
@@ -73,6 +73,8 @@ export default {
 
 </script>
 <style scoped>
+.header-category {}
+
 .song-container {
   color: white;
 }
