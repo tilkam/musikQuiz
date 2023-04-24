@@ -1,14 +1,15 @@
 <template>
   <div>
 
-    <h1>{{ categoryString}}</h1>
+    <h1>{{ categoryString }}</h1>
 
     <div class="songs">
       <div v-if="this.songs != null">
         <div v-for="song in songs" :key="song">
 
-          <p>{{ song.title }}</p>
-          <p>{{ song.artist }}</p>
+          <p>{{ "Artist: " + song.artist + " " + "Title: " + song.title }}</p>
+
+          <!--  <p>{{ song.artist }}</p> -->
         </div>
       </div>
     </div>
@@ -21,15 +22,12 @@
 
 <script>
 import { getQuizQuestions } from '../data/Quiz';
-/* import CategoryView from '../views/CategoryView.vue' */
-
-
 
 export default {
   name: "QuizView",
   components: {
     /*     QuizViewer */
-    /*     CategoryView */
+
 
 
   },
@@ -47,9 +45,9 @@ export default {
       required: false
     },
     setup(props) {
-   
-    console.log(props.categoryString)
-  }
+
+      console.log(props.categoryString)
+    }
   },
   data() {
     return {
@@ -83,32 +81,20 @@ export default {
 
       this.show = false
     },
+    updateId(newId) {
+      this.id = newId
+      console.log(newId)
+    }
 
   },
-/*       watch: {
-  categoryString: function(newCategory){
-   
-    this.getSongs(newCategory)
-  },
-    },  */ 
+
   async mounted() {
-    console.log(this.categoryId)
-    
-    this.getSongs(this.categoryId) 
-   this.getSongs(event.target.id)
-    
-  },
+    console.log(this.$route.params.id)
 
-/*   created() {
-    this.loading = true;
-    getQuizQuestions(this.categoryId)
-      .then((data) => {
-        this.songs = data;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-  } */
+    this.getSongs(this.$route.params.id)
+    
+
+  },
 
 
 }
@@ -118,5 +104,7 @@ export default {
 <style >
 .songs {
   display: flex;
+  background: white;
+  text-transform: none;
 }
 </style>

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import QuizView from '../views/QuizView.vue'
-import CategoryView from '../views/CategoryView.vue'
+ import QuizView from '../views/QuizView.vue' 
+ import CategoryView from '../views/CategoryView.vue' 
+/* import QuizViewer from '../views/QuizViewer.vue' */
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,18 +13,24 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/category/',
+      path: '/category',
       name: 'category',
       component: CategoryView,
      
     
     },
     {
-      path: '/:id/quiz/',
+      path: '/:id/quiz',
       name: 'quiz',
       component: QuizView,
     
     },
+  /*   {
+      path: '/cw/',
+      name: 'cw',
+      component:CategoryView,
+    
+    }, */
 
 
 

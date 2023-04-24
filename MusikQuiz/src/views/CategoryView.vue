@@ -17,51 +17,29 @@
                
               </button>
             </div>
-            <QuizView :categoryId="selectedCategoryId" :categoryString="selectedCategoryString"/>
+           <!--  <QuizView :categoryId="selectedCategoryId" :categoryString="selectedCategoryString" :song="songs"/>   -->
           <!--   <QuizView v-for="song in songs" :key="song">
               {{ song.title + song.artist}}
             </QuizView> -->
-            
           </div>
         </div>
       </div>
-    
-      <!--   <div v-if="this.songs != null">
- -->
-    <!--   <div class="song-container">
-
-        <div v-for="song in songs" :key="song">
-          <p>{{ song.artist }}</p>
-          <p>{{ song.title }}</p> 
-         
-         
-
-     </div> 
-      </div> -->
-
     </div>
   </div>
 </template>
 
 <script>
-/* import GetQuizSongs from '../data/GetQuizSongs.vue' */
 
-
-/* import { getQuizQuestions } from '../data/Quiz'; */
-
-import QuizView from './QuizView.vue';
+/* import QuizView from './QuizView.vue';  */
 /* import QuizViewer from './QuizViewer.vue'; */
-
-
-
 
 export default {
   name: 'CategoryView',
 
   components: {
     /*  GetQuizSongs, */
-    QuizView,
-  /*   QuizViewer */
+   /*   QuizView,  */
+   /*  QuizViewer */
 },
   props: {
     category: {
@@ -86,6 +64,7 @@ export default {
       startDate: "2022-09-23",
       endDate: "2023-03-23",
       show: true
+      
 
     }
   },
@@ -95,44 +74,12 @@ export default {
 
       this.selectedCategoryId = id
       this.selectedCategoryString = categoryString
-
+      this.$emit('set-id', this.selectedCategoryId) 
       /* this.songs = this.getSongs(id) */
-      this.$router.push({ name: 'quiz', params: { id: this.selectedCategoryString } });  
+      this.$router.push({ name:'quiz', params: { id: this.selectedCategoryId } }); 
+     
 
     },
-/* 
-    async getSongs(id) {
-
-      try {
-        this.songs = await getQuizQuestions(id, this.startDate, this.endDate);
-        if (this.songs != null) {
-          console.log(this.songs)
-
-        }
-      }
-      catch (err) {
-        console.log("error");
-
-      }
-
-      this.show = false
-    },
- */
-  /*   async created() {
-      if (this.song == null) {
-        console.log("loading");
-      }
-
-      this.getSongs(this.categoryId)
-
-    }, */
-
-    /*  created() {
-       if (this.songs == null) {
-         this.getSongs(this.selectedCategoryId)
-       }
-     }, */
-
 
   },
 }

@@ -1,6 +1,7 @@
 <script>
 import { RouterView } from 'vue-router'
 import NavPage from '../src/components/NavPage.vue'
+/* import QuizViewer from './views/QuizViewer.vue'; */
 
 /* import GetQuizSongs from './data/GetQuizSongs.vue' */
 
@@ -8,8 +9,9 @@ export default {
   components: {
     /*  GetQuizSongs, */
     NavPage,
-    RouterView
-  }
+    RouterView,
+  /*   QuizViewer */
+}
 }
 </script>
 
@@ -20,6 +22,7 @@ export default {
       <div class="nav-startPage">
         <NavPage />
         <RouterView />
+       
       </div>
     </div>
   </main>

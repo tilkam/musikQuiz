@@ -1,7 +1,7 @@
 import { getGenre } from "./retriveData";
 export { getQuizQuestions, getFour }
 
-/* const songs = [] */
+
 
 async function getQuizQuestions(id, startDate, endDate) {
 
