@@ -18,6 +18,6 @@ body {
   
 }
 .nav {
-  padding: 2rem;
+  padding-bottom: 2rem;
 }
 </style>

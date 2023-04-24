@@ -3,8 +3,14 @@
     <h1>{{ category }}</h1>
     <div class="songs">
       <div v-if="this.songs != null">
-        <div v-for="song in songs" :key="song">
-          <p>{{ "Artist: " + song.artist + " " + "Title: " + song.title }}</p>
+        <div class="question-container">
+          <div v-for="question of questions" :key="question.title">
+            {{ question.title }}</div>
+        </div>
+        <div v-for="song in alternatives" :key="song">
+          <div class="options-container">
+            <p>{{ song.artist }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -13,29 +19,11 @@
 </template>
 
 <script>
-import { getQuizQuestions } from '../data/Quiz';
+import { getQuizQuestions, getFour } from '../data/Quiz';
 
 export default {
-
   name: "QuizView",
-  components: {
 
-  },
-  props: {
-    categoryId: {
-      type: Number,
-      required: false,
-    },
-    categoryString: {
-      type: String,
-      required: false,
-    },
-    song: {
-      type: Array,
-      required: false
-    },
-   
-  },
   data() {
     return {
       songs: [],
@@ -43,6 +31,8 @@ export default {
       endDate: "2023-03-23",
       loading: true,
       category: null,
+      alternatives: [],
+      questions: []
     }
   },
   methods: {
@@ -51,21 +41,27 @@ export default {
       this.loading = true
       try {
         this.songs = await getQuizQuestions(id, this.startDate, this.endDate);
-       
       }
       catch (err) {
         console.log("error");
       }
 
       this.loading = false
+      this.displayQuestions(this.songs)
     },
+    async displayQuestions(songs) {
+      this.alternatives = await getFour(songs)
+
+      this.questions.push(this.alternatives[0])
+      console.log(this.questions)
+    }
 
   },
 
   async mounted() {
     this.category = this.$route.query.genre
     this.getSongs(this.$route.params.id)
-    
+
   },
 
 }
@@ -75,8 +71,21 @@ export default {
 <style >
 .songs {
   display: flex;
+}
+
+.question-container,
+.options-container {
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 1rem;
+
   background: white;
   text-transform: none;
   font-family: Montserrat, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+h1 {
+  color: white;
 }
 </style>

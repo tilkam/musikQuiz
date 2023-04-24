@@ -8,7 +8,7 @@ async function getQuizQuestions(id, startDate, endDate) {
   let quizList = await getGenre(id, startDate, endDate)
   /* console.log(this.genre) */
   
-  return getFour(quizList)
+  return quizList
 
 }
 

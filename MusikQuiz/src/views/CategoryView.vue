@@ -4,7 +4,7 @@
   <div>
     <div class="container-category">
       <div class="header-category">
- 
+
         <div v-if="show">
           <h2>Categories</h2>
         </div>
@@ -12,15 +12,12 @@
           <div class="content-category">
             <div class="container-category-buttons">
               <button v-for="category in category" :key="category.id" :value="category.category" :id="category.id"
-                @click="selectCategory(category.id, category.category)" class="category-button">
+                @click="selectCategory(category.id, category.category, category.startDate, category.endDate)"
+                class="category-button">
                 {{ category.category }}
-               
+
               </button>
             </div>
-           <!--  <QuizView :categoryId="selectedCategoryId" :categoryString="selectedCategoryString" :song="songs"/>   -->
-          <!--   <QuizView v-for="song in songs" :key="song">
-              {{ song.title + song.artist}}
-            </QuizView> -->
           </div>
         </div>
       </div>
@@ -30,41 +27,27 @@
 
 <script>
 
-/* import QuizView from './QuizView.vue';  */
-/* import QuizViewer from './QuizViewer.vue'; */
 
 export default {
   name: 'CategoryView',
-
-  components: {
-    /*  GetQuizSongs, */
-   /*   QuizView,  */
-   /*  QuizViewer */
-},
-  props: {
-    category: {
-      type: Array,
-      default: () => [
-        { id: 2697, category: 'pop' },
-        { id: 5523, category: 'country' },
-        { id: 2680, category: 'soul' },
-        { id: 1603, category: 'klassiskt' },
-        { id: 3135, category: 'dansband' },
-        { id: 4433, category: 'visor' }
-      ]
-    },
-  },
-
 
   data() {
     return {
       selectedCategoryId: 1190,
       selectedCategoryString: 'Genre',
       songs: [],
-      startDate: "2022-09-23",
-      endDate: "2023-03-23",
-      show: true
-      
+      show: true,
+      category:
+        [
+          { id: 2697, category: 'pop', startDate: '2022-09-23', endDate: '2023-03-23' },
+          { id: 5523, category: 'country', startDate: '2022-09-23', endDate: '2023-03-23' },
+          { id: 2680, category: 'soul', startDate: '2022-09-23', endDate: '2023-03-23' },
+          { id: 1603, category: 'klassiskt', startDate: '2022-09-23', endDate: '2023-03-23' },
+          { id: 3135, category: 'dansband', startDate: '2022-09-23', endDate: '2023-03-23' },
+          { id: 4433, category: 'visor', startDate: '2022-09-23', endDate: '2023-03-23' }
+        ]
+      ,
+
 
     }
   },
@@ -74,11 +57,14 @@ export default {
 
       this.selectedCategoryId = id
       this.selectedCategoryString = categoryString
-      
+      /*  const start = startDate
+       const end = endDate */
+
+
       /* this.songs = this.getSongs(id) */
-      this.$router.push({ name:'quiz', params: { id: this.selectedCategoryId } , query:{ genre: this.selectedCategoryString}}); 
-      
-     
+      this.$router.push({ name: 'quiz', params: { id: this.selectedCategoryId }, query: { genre: this.selectedCategoryString } });
+
+
 
     },
 
