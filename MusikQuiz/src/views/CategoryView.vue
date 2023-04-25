@@ -9,9 +9,16 @@
       <div class="background">
         <div class="content-category">
           <div class="container-category-buttons">
-            <button v-for="category in categories" :key="category.id" :value="category.genre" :id="category.id"
-              @click="selectCategory(category.id, category.genre, category.startDate, category.endDate)"
-              class="category-button">
+            <button
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.genre"
+              :id="category.id"
+              @click="
+                selectCategory(category.id, category.genre, category.startDate, category.endDate)
+              "
+              class="category-button"
+            >
               {{ category.genre }}
             </button>
           </div>
@@ -22,19 +29,17 @@
 </template>
 
 <script setup>
-
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 import categories from '../data/categories.json'
 const router = useRouter()
 
 function selectCategory(id, categoryString) {
-
-  router.push({ name: 'quiz', params: { id: id }, query: { genre: categoryString } });
+  router.push({ name: 'quiz', params: { id: id }, query: { genre: categoryString } })
 }
-
 </script>
 <style scoped>
-.header-category {}
+.header-category {
+}
 
 .song-container {
   color: white;

@@ -9,9 +9,9 @@ export default {
   components: {
     /*  GetQuizSongs, */
     NavPage,
-    RouterView,
-  /*   QuizViewer */
-}
+    RouterView
+    /*   QuizViewer */
+  }
 }
 </script>
 
@@ -22,7 +22,6 @@ export default {
       <div class="nav-startPage">
         <NavPage />
         <RouterView />
-       
       </div>
     </div>
   </main>

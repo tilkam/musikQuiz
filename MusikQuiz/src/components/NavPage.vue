@@ -15,7 +15,6 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 body {
   color: white;
-  
 }
 .nav {
   padding-bottom: 2rem;
