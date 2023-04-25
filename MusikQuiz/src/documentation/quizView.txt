@@ -1,0 +1,11 @@
+2023-04-25
+QuizView får genre (ex. pop, rock, folk) och id frå categoryView. 
+Sedan hittar den matchande category från categories.json och använder
+hämtar startDatum och slutdatum.
+
+Först anropas getSong för att hämta alla låtar i den valda kategorin och det angvina tidsspannet
+Efter det så anropas displayGuestions som hämtar ut fyra låtar och artister och tar ut ett värde
+från listan och lägger i questions. I tempalate så skrivs en titel och fyra artister ut
+
+När man klickar på ett alternativ så matchar den question med alternativ och kollar om det stämmer
+och sedan genereas fyra nya låtar.

@@ -1,27 +1,24 @@
 <script setup>
-import { useRoute } from 'vue-router'
-
-const songs = defineProps({
-  songs: {
-    type: String
-  }
-})
-
-const route = useRoute()
-
-console.log(route.params)
+ import { defineProps } from 'vue'; 
+// eslint-disable-next-line vue/no-setup-props-destructure
+const {song} = defineProps(['song']) 
+console.log(song)
 </script>
 
 <template>
   <div>
-    <div class="song-container">
-      {{ songs.artist }}
+   
+      <div class="options-container">
+        <div v-for="song in song" :key="song.artist + song.title" @click="isClicked(song.artist)">
+        <p>{{ song.artist }}</p>
+      </div>
     </div>
-  </div>
+    </div>
 </template>
 <style scoped>
 .song-container {
   width: 100%;
   background-color: white;
+  padding: 3rem;
 }
 </style>

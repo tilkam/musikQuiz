@@ -9,16 +9,9 @@
       <div class="background">
         <div class="content-category">
           <div class="container-category-buttons">
-            <button
-              v-for="category in categories"
-              :key="category.id"
-              :value="category.genre"
-              :id="category.id"
-              @click="
-                selectCategory(category.id, category.genre, category.startDate, category.endDate)
-              "
-              class="category-button"
-            >
+            <button v-for="category in categories" :key="category.id" :value="category.genre" 
+            :id="category.id" @click="selectCategory(category.id, category.genre)
+              " class="category-button">
               {{ category.genre }}
             </button>
           </div>
@@ -38,8 +31,7 @@ function selectCategory(id, categoryString) {
 }
 </script>
 <style scoped>
-.header-category {
-}
+.header-category {}
 
 .song-container {
   color: white;
