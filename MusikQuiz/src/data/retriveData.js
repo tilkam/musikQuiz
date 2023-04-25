@@ -3,7 +3,8 @@
 const id = ref(null)  */
 
 const BASE_URL = 'https://api.sr.se/api/v2'
-
+/* https://api.sr.se/api/v2/playlists/getplaylistbyprogramid?id=${id}
+&startdatetime=${startDate}&enddatetime=${endDate}&format=json&size=5000 */
 async function getJson(urlString) {
   const response = await fetch(`${BASE_URL}${urlString}`)
 

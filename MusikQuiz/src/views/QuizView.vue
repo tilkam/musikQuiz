@@ -3,23 +3,25 @@
     <h1>{{ category }}</h1>
     <div class="songs">
       <div v-if="this.songs != null">
-        <div class="question-container">
-          <div v-for="question of question" :key="question.title">
-            {{ question.title }}</div>
+      <div class="question-container">
+        <div v-for="question of question" :key="question.title">
+          {{ question.title }}</div>
+      </div>
+      <div v-for="song in alternatives" :key="song.artist" @click="isClicked(song.artist)">
+        <div class="options-container">
+          <p>{{ song.artist }}</p>
         </div>
-        <div v-for="song in alternatives" :key="song" @click="isClicked(song.artist)">
-          <div class="options-container">
-            <p>{{ song.artist }}</p>
-          </div>
-        </div>
+      </div>
       </div>
     </div>
     <div v-if="loading">Loading...</div>
   </div>
 </template>
 
+
 <script>
 import { getQuizQuestions, getFour } from '../data/Quiz';
+import categories from '../data/categories.json';
 
 export default {
   name: "QuizView",
@@ -33,14 +35,20 @@ export default {
       category: null,
       alternatives: [],
       question: []
+     /*  categoryId: this.categories.id,
+      category: categories.find(c => c.id === this.categoryId), */
+      
     }
   },
+
+
   methods: {
 
     async getSongs(id) {
       this.loading = true
       try {
         this.songs = await getQuizQuestions(id, this.startDate, this.endDate);
+        
       }
       catch (err) {
         console.log("error");
@@ -53,21 +61,20 @@ export default {
       this.alternatives = await getFour(songs)
 
       this.question.unshift(this.alternatives[0])
-
+      console.log(this.question)
+      this.alternatives.sort(() => 0.5 - Math.random())
 
     },
     isClicked(song) {
-      console.log(this.question[0].artist)
-      console.log(song)
-      if(song === this.question[0].artist){
+      console.log("Right Answer: " + this.question[0].artist)
+      console.log("Player Choice: " + song)
+      if (song === this.question[0].artist) {
         console.log("YES")
       }
       if (this.question.length === 1) {
         this.question.pop()
-
       }
       this.displayQuestions(this.songs)
-      
 
     }
 
@@ -76,19 +83,30 @@ export default {
   async mounted() {
     this.category = this.$route.query.genre
     this.getSongs(this.$route.params.id)
+    console.log(categories)
+    console.log(this.$route.params.id)
 
   },
-
-
 }
+
+
+
+
+
 
 </script>
 
+
+
+
+
 <style >
-
-
 .songs {
   display: flex;
+}
+
+.question-container {
+  padding: 3rem;
 }
 
 .question-container,
