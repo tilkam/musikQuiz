@@ -2,7 +2,7 @@
 
 <template>
     <div>
-        <h1>{{ genre }}</h1>
+
         <div class="songs">
             <div v-if="this.songs != null">
                 <div class="question-container">
@@ -37,7 +37,6 @@ export default {
     name: 'QuizGetSongs',
 
     components: {
-        /*  SongCards, */
     },
 
     data() {
@@ -49,14 +48,11 @@ export default {
             question: [],
             category: [],
             today: null,
-            correct: false
 
         }
     },
 
     methods: {
-        
-      
         async getAllSongs(id, dateString) {
             try {
                 this.songs = await getQuizQuestions(id, dateString)
@@ -81,10 +77,11 @@ export default {
             console.log('Player Choice: ' + song)
             let isCorrect = false;
             if (song === this.question[0].artist) {
-                console.log('YES')
-                this.correct = true
+                console.log('RIGHT ANSWER')
                 isCorrect = true;
-                //this.correct++
+
+            } else {
+                console.log("WRONG ANSWER")
             }
 
             if (this.question.length === 1) {
@@ -92,13 +89,14 @@ export default {
             }
             this.displayQuestions(this.songs)
             this.correct = false;
-            this.total++
+
 
             if (this.total === 10) {
                 this.loading = true
                 this.finished = true
             }
             this.$emit('is-correct', isCorrect);
+
         }
     },
 
@@ -135,6 +133,10 @@ export default {
     background: white;
     text-transform: none;
     font-family: Montserrat, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    cursor: pointer;
+}
+.options-container:hover{
+    background-color:lightblue;
 }
 
 h1 {

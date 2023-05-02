@@ -17,7 +17,7 @@
   </div>
 </template>
 <script></script>
-<style>
+<style scoped>
 .menu-container {
   display: flex;
   flex-wrap: wrap;

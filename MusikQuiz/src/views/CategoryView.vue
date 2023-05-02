@@ -31,7 +31,9 @@ function selectCategory(id, categoryString) {
 }
 </script>
 <style scoped>
-.header-category {}
+.header-category{
+  color:white;
+}
 
 .song-container {
   color: white;
@@ -51,7 +53,7 @@ function selectCategory(id, categoryString) {
   max-width: 100%;
   width: 10rem;
   height: 10rem;
-  padding: 3rem;
+  padding: 1rem;
   /* border-radius: 1rem; */
   border-radius: 20% / 20%;
   margin: 0.5rem;
@@ -59,9 +61,10 @@ function selectCategory(id, categoryString) {
   background-color: #ffddd2;
   font-family: Adventuro, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: #e29578;
-  font-size: 1.4rem;
+  font-size: 1rem;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
+  word-break: break-all;
 }
 
 button {
